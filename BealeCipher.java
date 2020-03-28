@@ -7,7 +7,7 @@ public  class BealeCipher
 	public int ciphertext;
 	public String data; 
 	public String tedhenat[];
-	public void ReadFile(String keyFile) {  
+public void ReadFile(String keyFile) {  
 
     try {
       File book = new File(keyFile);
@@ -22,4 +22,17 @@ public  class BealeCipher
       System.out.println("An error occurred.");
       e.printStackTrace();
     } 
+	}
+public  void Encryption(String teksti){
+		
+		for(int i=0;i<teksti.length();i++){
+			for(int j=0;j<tedhenat.length;j++){
+			if(tedhenat[j].charAt(0)==teksti.charAt(i)){
+				System.out.print(j+" ");
+			}
+			else{
+				continue;
+			}
+		}
+		}
 	}
