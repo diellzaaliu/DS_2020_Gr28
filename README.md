@@ -2,7 +2,7 @@
 
 #Komanda PlayFair
 
-*Adjusting the given Key
+*Adjusting the given Key                                                                                             
 *Creating the matrix with the Key involved
 *Generating the both matrix and Key (printing it out)
 *Formatting the Plaintext given
