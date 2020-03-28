@@ -4,7 +4,7 @@
 
 *Adjusting the given Key 
 *Creating the matrix with the Key involved
-* Generating the both matrix and Key (printing it out)
+*Generating the both matrix and Key (printing it out)
 *Formatting the Plaintext given
 *Dividing the PlainText into substrings
 *Getting the dimensions of the Key-matrix and avoid the letter "j"
