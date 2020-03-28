@@ -3,7 +3,7 @@
 #Komanda PlayFair
 
 *Adjusting the given Key                                                                                             
-*Creating the matrix with the Key involved
+*Creating the matrix with the Key involved                                                                                                 
 *Generating the both matrix and Key (printing it out)
 *Formatting the Plaintext given
 *Dividing the PlainText into substrings
