@@ -36,3 +36,17 @@ public  void Encryption(String teksti){
 		}
 		}
 	}
+public  void Decryption(String teksti){
+		
+		for(int i=0;i<teksti.length();i++){
+			for(int j=0;j<tedhenat.length;j++){
+			if(j==teksti.charAt(i)){
+				System.out.println(tedhenat[j].charAt(0));
+			}
+			else{
+				continue;
+			}
+		}
+		}
+	}
+	}
