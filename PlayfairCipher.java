@@ -91,3 +91,137 @@ public void KeyGen()
         }
         return text;
     }
+ private String[] Divid2Pairs(String new_string)
+    {
+        String Original = format(new_string);
+        int size = Original.length();
+        if (size % 2 != 0)
+        {
+            size++;
+            Original = Original + 'x';
+        }
+        String x[] = new String[size / 2];
+        int counter = 0;
+        for (int i = 0; i < size / 2; i++)
+        {
+            x[i] = Original.substring(counter, counter + 2);
+            counter = counter + 2;
+        }
+        return x;
+    }
+ 
+    public int[] GetDimensions(char letter)
+    {
+        int[] key = new int[2];
+        if (letter == 'j')
+            letter = 'i';
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (matrix_array[i][j] == letter)
+                {
+                    key[0] = i;
+                    key[1] = j;
+                    break;
+                }
+            }
+        }
+        return key;
+    }
+ 
+    public String encryptMessage(String Source)
+    {
+        String src_array[] = Divid2Pairs(Source);
+        String Code = new String();
+        char one;
+        char two;
+        int part1[] = new int[2];
+        int part2[] = new int[2];
+        for (int i = 0; i < src_array.length; i++)
+        {
+            one = src_array[i].charAt(0);
+            two = src_array[i].charAt(1);
+            part1 = GetDimensions(one);
+            part2 = GetDimensions(two);
+            if (part1[0] == part2[0])
+            {
+                if (part1[1] < 4)
+                    part1[1]++;
+                else
+                    part1[1] = 0;
+                if (part2[1] < 4)
+                    part2[1]++;
+                else
+                    part2[1] = 0;
+            }
+            else if (part1[1] == part2[1])
+            {
+                if (part1[0] < 4)
+                    part1[0]++;
+                else
+                    part1[0] = 0;
+                if (part2[0] < 4)
+                    part2[0]++;
+                else
+                    part2[0] = 0;
+            }
+            else
+            {
+                int temp = part1[1];
+                part1[1] = part2[1];
+                part2[1] = temp;
+            }
+            Code = Code + matrix_array[part1[0]][part1[1]]
+                    + matrix_array[part2[0]][part2[1]];
+        }
+        return Code;
+    }
+	 public String decryptMessage(String Code)
+    {
+        String Original = new String();
+        String src_arr[] = Divid2Pairs(Code);
+        char one;
+        char two;
+        int part1[] = new int[2];
+        int part2[] = new int[2];
+        for (int i = 0; i < src_arr.length; i++)
+        {
+            one = src_arr[i].charAt(0);
+            two = src_arr[i].charAt(1);
+            part1 = GetDimensions(one);
+            part2 = GetDimensions(two);
+            if (part1[0] == part2[0])
+            {
+                if (part1[1] > 0)
+                    part1[1]--;
+                else
+                    part1[1] = 4;
+                if (part2[1] > 0)
+                    part2[1]--;
+                else
+                    part2[1] = 4;
+            }
+            else if (part1[1] == part2[1])
+            {
+                if (part1[0] > 0)
+                    part1[0]--;
+                else
+                    part1[0] = 4;
+                if (part2[0] > 0)
+                    part2[0]--;
+                else
+                    part2[0] = 4;
+            }
+            else
+            {
+                int temp = part1[1];
+                part1[1] = part2[1];
+                part2[1] = temp;
+            }
+            Original = Original + matrix_array[part1[0]][part1[1]]
+                    + matrix_array[part2[0]][part2[1]];
+        }
+        return Original;
+    }
+}
