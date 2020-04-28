@@ -4,10 +4,8 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CreateDeleteUser{
 	public String publicKey;
@@ -26,6 +24,19 @@ public class CreateDeleteUser{
 	public void createUser(String useri) throws Exception{
 
         try {
+			
+			if (useri == null || useri.trim().isEmpty()) {
+			System.out.println("Incorrect format of string");
+			System.exit(1);
+			}
+			Pattern p = Pattern.compile("[^A-Za-z0-9]");
+			Matcher m = p.matcher(useri);
+			boolean b = m.find();
+			if (b){
+			System.out.println("It is not allowed to use special characters");
+			System.exit(1);
+			
+			}
             BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/Twin/Desktop/FIEK/SEMESTRI IV/Siguria e te dhenave/Projekti/Keys/"+useri+".public.xml"));
 			publicKey= Base64.getMimeEncoder().encodeToString( keypair.getPublic().getEncoded());
             writer.write("------Public Key-------\n"+publicKey);
