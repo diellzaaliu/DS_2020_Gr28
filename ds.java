@@ -1,18 +1,33 @@
-import java.util.Scanner;
+import java.security.*;
+import java.util.*;
+import java.io.*;
+
 
 public class ds{
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws Exception
     {
         PlayfairCipher x = new PlayfairCipher();
+		CreateDeleteUser y=new CreateDeleteUser();
+		y.RSAPublicPrivateKey();
 		
-	 if(args.length == 0)
+	if(args.length == 0)
     {
         System.out.println("Proper Usage is: PlayFair encrypt/decrypt <key> <plaintext>\nor\nMorseCode encode/decode <text>\nor\nBeale encrypt/decrypt <book> <plaintext> ");
         System.exit(1);
     }
-       
-		else if(args[0].equalsIgnoreCase("PlayFair")){
+	else if(args.length==1){
+		System.out.println("Nuk keni dhene argumente te mjaftueshme");
+		System.exit(1);
+	}
+    else if(args[0].equalsIgnoreCase("Create-User")){
+		   
+		   y.createUser(args[1]);
+	}
+	else if(args[0].equalsIgnoreCase("Delete-User")){
+		   y.deleteUser(args[1]);
+	}
+	else if(args[0].equalsIgnoreCase("PlayFair")){
    
         x.setKey(args[2]);
         x.KeyGen();
@@ -33,7 +48,7 @@ public class ds{
 				
 		}
 		
-		else if(args[0].equalsIgnoreCase("MorseCode")){
+	else if(args[0].equalsIgnoreCase("MorseCode")){
 			
 			if(args[1].equalsIgnoreCase("Encode")){
 				MorseCode.Encode(args[2]);
@@ -42,7 +57,7 @@ public class ds{
 				MorseCode.Decode(args[2]);
 			}
 		}
-		else if(args[0].equalsIgnoreCase("Beale")){
+	else if(args[0].equalsIgnoreCase("Beale")){
 			BealeCipher text=new BealeCipher();
 			text.ReadFile(args[2]);
 			if(args[1].equalsIgnoreCase("Encrypt")){
@@ -51,7 +66,7 @@ public class ds{
 				text.Decryption(args[3]);
 			}
 		}
-		else{
+	else{
 			System.out.println("Proper Usage is: PlayFair encrypt <key> <plaintext>\nor\nMorseCode encode <text>\nor\nBeale encrypt <book> <plaintext> ");
 			System.exit(1);
 		}
