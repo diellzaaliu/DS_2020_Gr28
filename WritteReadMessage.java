@@ -59,7 +59,7 @@ public class writereadmessage {
         } 
         catch (Exception e) 
         {
-            System.out.println("Error while decrypting: " + e.toString());
+            System.out.println("There are some errors while decrypting the message,: " + e.toString());
         }
         return null;
     }
