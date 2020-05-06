@@ -6,7 +6,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.file.*;
 
-public class writemessage {
+public class writereadmessage {
  
     private static SecretKeySpec secretKey;
     private static byte[] key;
