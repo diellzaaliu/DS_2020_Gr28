@@ -10,11 +10,11 @@ public class ds{
         PlayfairCipher x = new PlayfairCipher();
 		CreateDeleteUser y=new CreateDeleteUser();
 <<<<<<< HEAD
-		writemessagee z= new writemessagee();
+		writereadmessagee z= new writereadmessagee();
 		ExportImport a = new ExportImport();
 =======
 		y.RSAPublicPrivateKey();
-		writemessage z= new writemessage();
+		writereadmessage z= new writereadmessage();
 >>>>>>> 25a3bfa647542ac551724e8b0784f390803a28ef
 		
 	if(args.length == 0)
