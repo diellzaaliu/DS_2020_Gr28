@@ -7,9 +7,9 @@ import java.util.Base64;
 import java.nio.file.*;
 import java.security.spec.RSAPrivateCrtKeySpec;
 
-public class ExportImport{
+public class ExportPrivateKey{
 	
-	public void ExportPrivateKey(String useri) throws Exception{
+	public void ExportPrivKey(String useri) throws Exception{
 		if(Files.exists(Paths.get(useri+".private.xml"))){
 		String text="";
 		for (String line : Files.readAllLines(Paths.get(useri+".private.xml"))){
