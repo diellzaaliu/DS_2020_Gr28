@@ -22,3 +22,8 @@
 *Splitting the file into array of strings                                                                                                
 *Encryption/Decryption using a nested for loop and some if statements                                                                    
 
+#CreateDeleteUser 
+
+*First method generates the RSA keypair and returns it
+*Second method accepts the paramether of the user name and takes the public/private key of the generated keyair and then creates a file and saves that public/private key to that xml file.
+*Last method checks if the public or private file of corresponding user is created and deletes it with the command of the user.
