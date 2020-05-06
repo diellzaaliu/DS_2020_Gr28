@@ -9,8 +9,13 @@ public class ds{
     {
         PlayfairCipher x = new PlayfairCipher();
 		CreateDeleteUser y=new CreateDeleteUser();
+<<<<<<< HEAD
 		writemessagee z= new writemessagee();
 		ExportImport a = new ExportImport();
+=======
+		y.RSAPublicPrivateKey();
+		writemessage z= new writemessage();
+>>>>>>> 25a3bfa647542ac551724e8b0784f390803a28ef
 		
 	if(args.length == 0)
     {
@@ -32,10 +37,13 @@ public class ds{
 	
 	System.out.println(z.encrypt(args[2], args[1]));
 	}
+<<<<<<< HEAD
 	else if(args[0].equalsIgnoreCase("Export-Key")){
 		a.ExportPrivateKey(args[1]);
 	}
 		
+=======
+>>>>>>> 25a3bfa647542ac551724e8b0784f390803a28ef
 	else if(args[0].equalsIgnoreCase("Read-message")){
 	
 	System.out.println("Marresi: "+args[1]+"\n"+"Mesazhi: "+z.decrypt(args[2], args[1]));
@@ -85,8 +93,4 @@ public class ds{
 		}
 				
 	}
-	}	
-    
-	
-
- 
+	}
