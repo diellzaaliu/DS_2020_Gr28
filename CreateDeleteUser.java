@@ -3,13 +3,15 @@ import java.util.*;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.Pattern; 
 import java.nio.file.*;
+import java.util.Scanner;
 
 public class CreateDeleteUser{
 	public String publicKey;
 	public String privateKey;
 	public KeyPair keypair;
+	Scanner input = new Scanner(System.in);
 
 	public KeyPair RSAPublicPrivateKey() throws Exception{
 
@@ -20,7 +22,9 @@ public class CreateDeleteUser{
 		return keypair;
 
     }
+	
 	public void createUser(String user) throws Exception{
+		
 		
 		String useri = user.trim();
 		if(Files.exists(Paths.get(useri+".public.xml"))){
@@ -29,26 +33,39 @@ public class CreateDeleteUser{
 		}
         try {
 			
-			Pattern p = Pattern.compile("[^A-Za-z0-9]"); //referenced by www.stackoverflow.com
-			Matcher m = p.matcher(useri);
-			boolean b = m.find();
-			if (b){
-				System.out.println("Nuk jane te lejuara karakteret speciale.");
+			System.out.println("Jepni fjalekalimin: ");
+			String fjalekalimi = input.nextLine();
+			System.out.println("Perserit fjalekalimin: ");
+			String fjalekalimiPerseritur = input.nextLine();
+			if ( fjalekalimi.equals(fjalekalimiPerseritur) && !fjalekalimi.isEmpty() && fjalekalimi.length()>=6){
+			
+				Pattern p = Pattern.compile("[^A-Za-z0-9]"); //referenced by www.stackoverflow.com
+				Matcher m = p.matcher(useri);
+				boolean b = m.find();
+				if (b){
+					System.out.println("Nuk jane te lejuara karakteret speciale.");
+					System.exit(1);
+				}
+				BufferedWriter writer = new BufferedWriter(new FileWriter(useri+".public.xml"));
+				publicKey= Base64.getMimeEncoder().encodeToString( keypair.getPublic().getEncoded());
+				writer.write("------Public Key-------\n"+publicKey);
+				System.out.println("Eshte krijuar celesi publik '"+useri+".public.xml'");
+				
+				BufferedWriter writer1 = new BufferedWriter(new FileWriter(useri+".private.xml"));
+				privateKey=Base64.getMimeEncoder().encodeToString( keypair.getPrivate().getEncoded());
+				System.out.println("Eshte krijuar celesi private '"+useri+".private.xml'");
+				writer1.write("------Private Key-------\n"+privateKey);
+				
+		
+				
+				writer.close();
+				writer1.close();
+			}
+			else{
+				System.out.println("Fjalekalimi nuk pershtatet!");
 				System.exit(1);
 			}
-            BufferedWriter writer = new BufferedWriter(new FileWriter(useri+".public.xml"));
-			publicKey= Base64.getMimeEncoder().encodeToString( keypair.getPublic().getEncoded());
-            writer.write("------Public Key-------\n"+publicKey);
-			System.out.println("Eshte krijuar celesi publik '"+useri+".public.xml'");
-			
-			BufferedWriter writer1 = new BufferedWriter(new FileWriter(useri+".private.xml"));
-			privateKey=Base64.getMimeEncoder().encodeToString( keypair.getPrivate().getEncoded());
-			System.out.println("Eshte krijuar celesi private '"+useri+".private.xml'");
-            writer1.write("------Private Key-------\n"+privateKey);
-	
-			
-            writer.close();
-			writer1.close();
+				
         } catch (IOException e) {
             e.printStackTrace();
         }
